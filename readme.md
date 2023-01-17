@@ -1,10 +1,7 @@
 # C - Stringify
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub release](https://img.shields.io/github/release/barrust/c-utils.svg)](https://github.com/barrust/c-utils/releases)
-[![C/C++ CI](https://github.com/barrust/c-utils/workflows/C/C++%20CI/badge.svg?branch=master)](https://github.com/barrust/c-utils/actions)
-[![codecov](https://codecov.io/gh/barrust/c-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/barrust/c-utils)
-
+[![GitHub release](https://img.shields.io/github/release/barrust/c-utils.svg)]
 
 This library provides a collection of functions to help the treatment of strings in c, reduce the need to write similar code for each project on an ad-hoc basis.  The goal is to provide functions that could work like javascripts functions but in c, and can be use in projects that uses strings
 

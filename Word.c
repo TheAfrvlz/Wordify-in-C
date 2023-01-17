@@ -2,10 +2,10 @@
 
 typedef unsigned char boolean;
 
+int *LinePos;
 
-int*LinePos;
-
-int Texlen(unsigned char* StringC, char StopC){
+int Texlen(unsigned char *StringC, char StopC)
+{
     int len = 0;
     while (*(StringC + len) != StopC)
     {
@@ -14,20 +14,23 @@ int Texlen(unsigned char* StringC, char StopC){
     // printf("%d \n",len);
     return len;
 }
-void LinesAddress(unsigned char* MainS){
+void LinesAddress(unsigned char *MainS)
+{
 
     int Size = 1;
     int len = 0;
 
-    LinePos = (int*) calloc(1,sizeof(int));
-    LinePos[0]= 0;
-    while (*(MainS + len) != '\0'){
+    LinePos = (int *)calloc(1, sizeof(int));
+    LinePos[0] = 0;
+    while (*(MainS + len) != '\0')
+    {
 
-        if (*(MainS + len) == '\n'){
+        if (*(MainS + len) == '\n')
+        {
             Size++;
-            printf("Dim of Size: %d\n",Size);
-            LinePos = (int*) realloc(LinePos, Size * sizeof(int));
-            LinePos[Size-1] = len+1;
+            printf("Dim of Size: %d\n", Size);
+            LinePos = (int *)realloc(LinePos, Size * sizeof(int));
+            LinePos[Size - 1] = len + 1;
         }
         len++;
     }
@@ -38,13 +41,13 @@ void LinesAddress(unsigned char* MainS){
     // printf("%c content - %d Addres\n",*(MainS + p[2]),(MainS + p[2]));
     // printf("%c content - %d Addres\n",*(MainS + p[3]),(MainS + p[3]));
 
-
-    for (int i = 0; i < Size; i++){
-        printf("%c content - %d Address, location in : %d\n",*(MainS + LinePos[i]),(MainS + LinePos[i]),LinePos[i]);
+    for (int i = 0; i < Size; i++)
+    {
+        printf("%c content - %d Address, location in : %d\n", *(MainS + LinePos[i]), (MainS + LinePos[i]), LinePos[i]);
     }
-    
 }
-int numLines(unsigned char* MainS){
+int numLines(unsigned char *MainS)
+{
     int lin = 1;
     int len = 0;
     while (*(MainS + len) != '\0')
@@ -58,9 +61,10 @@ int numLines(unsigned char* MainS){
 
     return lin;
 }
-unsigned char* AppendL(unsigned char* StringC, char C){
+unsigned char *AppendL(unsigned char *StringC, char C)
+{
 
-    int StrLng = Texlen(StringC,'\0');
+    int StrLng = Texlen(StringC, '\0');
     int size = StrLng + 1;
 
     char *buffer = (char *)calloc(size, sizeof(char));
@@ -76,11 +80,11 @@ unsigned char* AppendL(unsigned char* StringC, char C){
 
     return buffer;
 }
-unsigned char* AppendW(unsigned char* StringC1, unsigned char* StringC2)
+unsigned char *AppendW(unsigned char *StringC1, unsigned char *StringC2)
 {
 
-    int StrLng = Texlen(StringC1,'\0');
-    int StrLng1 = Texlen(StringC2,'\0');
+    int StrLng = Texlen(StringC1, '\0');
+    int StrLng1 = Texlen(StringC2, '\0');
     int size = StrLng + 1 + StrLng1;
 
     char *buffer = (char *)calloc(size, sizeof(char));
@@ -95,10 +99,11 @@ unsigned char* AppendW(unsigned char* StringC1, unsigned char* StringC2)
 
     return buffer;
 }
-unsigned char* toUpperCaseW(unsigned char* StringC){
+unsigned char *toUpperCaseW(unsigned char *StringC)
+{
     // 97 // 122
     int len = 0;
-    int StrLng = Texlen(StringC,'\0');
+    int StrLng = Texlen(StringC, '\0');
     char *buffer = (char *)calloc(StrLng, sizeof(char));
 
     int size = StrLng;
@@ -120,10 +125,11 @@ unsigned char* toUpperCaseW(unsigned char* StringC){
     }
     return buffer;
 }
-unsigned char* toLowerCaseW(unsigned char* StringC){
+unsigned char *toLowerCaseW(unsigned char *StringC)
+{
     // 97 // 122
     int len = 0;
-    int StrLng = Texlen(StringC,'\0');
+    int StrLng = Texlen(StringC, '\0');
     char *buffer = (char *)calloc(StrLng, sizeof(char));
 
     int size = StrLng;
@@ -145,7 +151,8 @@ unsigned char* toLowerCaseW(unsigned char* StringC){
     }
     return buffer;
 }
-char toUpperCaseL(char C){
+char toUpperCaseL(char C)
+{
     // 97 // 122
     char buffer;
 
@@ -158,7 +165,8 @@ char toUpperCaseL(char C){
     }
     return buffer;
 }
-char toLowerCaseL(char C){
+char toLowerCaseL(char C)
+{
     // 97 // 122
     char buffer;
     if ((C >= 'a' && C <= 'z') || (C >= 'A' && C <= 'Z'))
@@ -170,48 +178,36 @@ char toLowerCaseL(char C){
     }
     return buffer;
 }
-void CompareStringW(unsigned char* StringRef, unsigned char* String2C){
+void CompareStringW(unsigned char *StringRef, unsigned char *String2C)
+{
     int len = 0;
-    int StLen = Texlen(StringRef,'\0');
-    while (len < StLen){
+    int StLen = Texlen(StringRef, '\0');
+    while (len < (StLen - 1))
+    {
 
-        if(*(StringRef + len) == *(String2C+len)){
+        if (*(StringRef + len) == *(String2C + len))
+        {
             len++;
         }
-        else{
+        else
+        {
             printf("Not Same\n");
             break;
         }
     }
 }
-void ClearT(unsigned char* StringC){
+void ClearT(unsigned char *StringC)
+{
     free(StringC);
 }
 
-boolean Findchar(char C, unsigned char* StringC){    boolean buffer = 0u;
-    int len = 0;
-    while (*(StringC + len) != '\0')
-    {
-        if (*(StringC + len) == C)
-        {
-            buffer = 1u;
-            break;
-        }
-        else
-        {
-            len++;
-        }
-    }
-
-    return buffer;
-}
-
-boolean FindString(unsigned char* Origin,unsigned char* toFind){
+boolean FindChar(unsigned char C2Find, unsigned char *A2Find, unsigned char StopC)
+{
     boolean buffer = 0u;
     int len = 0;
-    while (*(Origin + len) != '\0')
+    while (*(A2Find + len) != StopC)
     {
-        if (*(Origin + len) == *(toFind + 0))
+        if (*(A2Find + len) == C2Find)
         {
             buffer = 1u;
             break;
@@ -224,13 +220,13 @@ boolean FindString(unsigned char* Origin,unsigned char* toFind){
 
     return buffer;
 }
-
-boolean FindSymbol(char S, unsigned char* StringC){
+boolean FindString(unsigned char *Text2Find, unsigned char *A2Find, unsigned char StopC)
+{
     boolean buffer = 0u;
     int len = 0;
-    while (*(StringC + len) != '\0')
+    while (*(Text2Find + len) != StopC)
     {
-        if (*(StringC + len) == S)
+        if (*(Text2Find + len) == *(A2Find + 0))
         {
             buffer = 1u;
             break;
@@ -243,24 +239,78 @@ boolean FindSymbol(char S, unsigned char* StringC){
 
     return buffer;
 }
-void ReplaceW(char *OriginString, char *toReplace, char *newS){
+boolean FindSymbol(unsigned char S2Find, unsigned char *A2Find, unsigned char StopC)
+{
+    boolean buffer = 0u;
     int len = 0;
-    int OriginLen;
-    char *NewOrigin;
-    
-    while (*(OriginString + len) != '\0')
+    while (*(A2Find + len) != StopC)
     {
-        if (*(OriginString + len) == *(toReplace + 0)){
-            
-        }else
+        if (*(A2Find + len) == S2Find)
+        {
+            buffer = 1u;
+            break;
+        }
+        else
         {
             len++;
         }
     }
 
-    OriginLen = Texlen(OriginLen,'\0') + Texlen(newS,'\0') - 1 - Texlen(toReplace,' ') -1; 
-
+    return buffer;
 }
+
+boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char StopC)
+{
+    int len = 0;
+
+    while (*(Regex + len) != StopC)
+    {
+
+        len++;
+    }
+
+    return 1u;
+}
+
+unsigned char *getAfterW(unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
+{
+    unsigned char *Word = '\0';
+
+    int len = 0;
+    while (*(StartAddC + len + Line) != StopC)
+    {
+        if (FindChar(StartAddC[Line + 0], StartAddC + len + Line, StopC))
+        {
+            for (int CIText = 0; CIText < Texlen(ToFind, '\0'); CIText++)
+            {
+                printf("%d | ", CIText);
+                printf("%c \n", StartAddC[Line + CIText]);
+            }
+        }
+
+        len++;
+    }
+
+    return Word;
+}
+
+unsigned char *getBeforeW(unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
+{
+    unsigned char *Word;
+    int len = 0;
+    while (*(StartAddC + len + Line) != StopC)
+    {
+
+        len++;
+    }
+
+    return Word;
+}
+
+void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned char *newS)
+{
+}
+
 // TODO
 
 // void DeleteSpace(char *StringC, char StopC){
@@ -283,14 +333,6 @@ void ReplaceW(char *OriginString, char *toReplace, char *newS){
 // }
 // unsigned char* getBeforechar(char *StartAddC, char L, char StopC){
 //     unsigned char Var = ' ';
-//     return &Var;
-// }
-// unsigned char* getAfterW(char *StartAddC, char StringC, char StopC){
-//      unsigned char Var = ' ';
-//     return &Var;
-// }
-// unsigned char* getBeforeW(char *StartAddC, char StringC, char StopC){
-//      unsigned char Var = ' ';
 //     return &Var;
 // }
 // unsigned char* getBeforeLine(int line){
