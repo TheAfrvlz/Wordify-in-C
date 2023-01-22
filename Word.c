@@ -1,20 +1,22 @@
 #include "Word.h"
 
 typedef unsigned char boolean;
+#define True (boolean)1u
+#define False (boolean)0u
 
 int *LinePos;
 
-int Texlen(unsigned char *StringC, char StopC)
+
+int Texlen(unsigned char *Principal_Text, char StopC)
 {
     int len = 0;
-    while (*(StringC + len) != StopC)
+    while (*(Principal_Text + len) != StopC)
     {
         len++;
     }
-    // printf("%d \n",len);
     return len;
 }
-void LinesAddress(unsigned char *MainS)
+void LinesAddress(unsigned char *Principal_Text)
 {
 
     int Size = 1;
@@ -22,10 +24,9 @@ void LinesAddress(unsigned char *MainS)
 
     LinePos = (int *)calloc(1, sizeof(int));
     LinePos[0] = 0;
-    while (*(MainS + len) != '\0')
+    while (*(Principal_Text + len) != '\0')
     {
-
-        if (*(MainS + len) == '\n')
+        if (*(Principal_Text + len) == '\n')
         {
             Size++;
             printf("Dim of Size: %d\n", Size);
@@ -35,24 +36,18 @@ void LinesAddress(unsigned char *MainS)
         len++;
     }
     printf("After\n");
-
-    // printf("%c content - %d Addres\n",*(MainS + p[0]),(MainS + p[0]));
-    // printf("%c content - %d Addres\n",*(MainS + p[1]),(MainS + p[1]));
-    // printf("%c content - %d Addres\n",*(MainS + p[2]),(MainS + p[2]));
-    // printf("%c content - %d Addres\n",*(MainS + p[3]),(MainS + p[3]));
-
     for (int i = 0; i < Size; i++)
     {
-        printf("%c content - %d Address, location in : %d\n", *(MainS + LinePos[i]), (MainS + LinePos[i]), LinePos[i]);
+        printf("%c content - %d Address, location in : %d\n", *(Principal_Text + LinePos[i]), (Principal_Text + LinePos[i]), LinePos[i]);
     }
 }
-int numLines(unsigned char *MainS)
+unsigned int  numLines(unsigned char *Principal_Text)
 {
     int lin = 1;
     int len = 0;
-    while (*(MainS + len) != '\0')
+    while (*(Principal_Text + len) != '\0')
     {
-        if (*(MainS + len) == '\n')
+        if (*(Principal_Text + len) == '\n')
         {
             lin++;
         }
@@ -61,18 +56,17 @@ int numLines(unsigned char *MainS)
 
     return lin;
 }
-unsigned char *AppendL(unsigned char *StringC, char C)
+unsigned char *AppendL(unsigned char *Principal_Text, unsigned char Letter)
 {
 
-    int StrLng = Texlen(StringC, '\0');
+    int StrLng = Texlen(Principal_Text, '\0');
     int size = StrLng + 1;
 
     char *buffer = (char *)calloc(size, sizeof(char));
 
     for (int i = 0; i < StrLng; i++)
-        buffer[i] = StringC[i];
-
-    buffer[StrLng] = C;
+        buffer[i] = Principal_Text[i];
+    buffer[StrLng] = Letter;
 
     buffer[size] = '\0';
 
@@ -80,44 +74,44 @@ unsigned char *AppendL(unsigned char *StringC, char C)
 
     return buffer;
 }
-unsigned char *AppendW(unsigned char *StringC1, unsigned char *StringC2)
+unsigned char *AppendW(unsigned char *Principal_Text, unsigned char *Word)
 {
 
-    int StrLng = Texlen(StringC1, '\0');
-    int StrLng1 = Texlen(StringC2, '\0');
+    int StrLng = Texlen(Principal_Text, '\0');
+    int StrLng1 = Texlen(Word, '\0');
     int size = StrLng + 1 + StrLng1;
 
     char *buffer = (char *)calloc(size, sizeof(char));
 
     for (int i = 0; i < StrLng; i++)
-        buffer[i] = StringC1[i];
+        buffer[i] = Principal_Text[i];
 
     for (int i = 0; i < StrLng1; i++)
-        buffer[i + StrLng] = StringC2[i];
+        buffer[i + StrLng] = Word[i];
 
     buffer[size] = '\0';
 
     return buffer;
 }
-unsigned char *toUpperCaseW(unsigned char *StringC)
+unsigned char *toUpperCaseWord(unsigned char *Word)
 {
     // 97 // 122
     int len = 0;
-    int StrLng = Texlen(StringC, '\0');
+    int StrLng = Texlen(Word, '\0');
     char *buffer = (char *)calloc(StrLng, sizeof(char));
 
     int size = StrLng;
-    while (*(StringC + len) != '\0')
+    while (*(Word + len) != '\0')
     {
-        if ((*(StringC + len) >= 'a' && *(StringC + len) <= 'z') || (*(StringC + len) >= 'A' && *(StringC + len) <= 'Z'))
+        if ((*(Word + len) >= 'a' && *(Word + len) <= 'z') || (*(Word + len) >= 'A' && *(Word + len) <= 'Z'))
         {
-            if ((*(StringC + len) >= 'a' && *(StringC + len) <= 'z'))
+            if ((*(Word + len) >= 'a' && *(Word + len) <= 'z'))
             {
-                *(buffer + len) = *(StringC + len) - 32;
+                *(buffer + len) = *(Word + len) - 32;
             }
             else
             {
-                *(buffer + len) = *(StringC + len);
+                *(buffer + len) = *(Word + len);
             }
         }
 
@@ -125,25 +119,25 @@ unsigned char *toUpperCaseW(unsigned char *StringC)
     }
     return buffer;
 }
-unsigned char *toLowerCaseW(unsigned char *StringC)
+unsigned char *toLowerCaseWord(unsigned char *Word)
 {
     // 97 // 122
     int len = 0;
-    int StrLng = Texlen(StringC, '\0');
+    int StrLng = Texlen(Word, '\0');
     char *buffer = (char *)calloc(StrLng, sizeof(char));
 
     int size = StrLng;
-    while (*(StringC + len) != '\0')
+    while (*(Word + len) != '\0')
     {
-        if ((*(StringC + len) >= 'a' && *(StringC + len) <= 'z') || (*(StringC + len) >= 'A' && *(StringC + len) <= 'Z'))
+        if ((*(Word + len) >= 'a' && *(Word + len) <= 'z') || (*(Word + len) >= 'A' && *(Word + len) <= 'Z'))
         {
-            if ((*(StringC + len) >= 'A' && *(StringC + len) <= 'Z'))
+            if ((*(Word + len) >= 'A' && *(Word + len) <= 'Z'))
             {
-                *(buffer + len) = *(StringC + len) + 32;
+                *(buffer + len) = *(Word + len) + 32;
             }
             else
             {
-                *(buffer + len) = *(StringC + len);
+                *(buffer + len) = *(Word + len);
             }
         }
 
@@ -151,41 +145,41 @@ unsigned char *toLowerCaseW(unsigned char *StringC)
     }
     return buffer;
 }
-char toUpperCaseL(char C)
+unsigned char     toUpperCaseL(unsigned char Letter)
 {
     // 97 // 122
     char buffer;
 
-    if ((C >= 'a' && C <= 'z') || (C >= 'A' && C <= 'Z'))
+    if ((Letter >= 'a' && Letter <= 'z') || (Letter >= 'A' && Letter <= 'Z'))
     {
-        if ((C >= 'a' && C <= 'z'))
+        if ((Letter >= 'a' && Letter <= 'z'))
         {
-            buffer = C - 32;
+            buffer = Letter - 32;
         }
     }
     return buffer;
 }
-char toLowerCaseL(char C)
+unsigned char     toLowerCaseL(unsigned char Letter)
 {
     // 97 // 122
     char buffer;
-    if ((C >= 'a' && C <= 'z') || (C >= 'A' && C <= 'Z'))
+    if ((Letter >= 'a' && Letter <= 'z') || (Letter >= 'A' && Letter <= 'Z'))
     {
-        if ((C >= 'A') && (C <= 'Z'))
+        if ((Letter >= 'A') && (Letter <= 'Z'))
         {
-            buffer = C + 32;
+            buffer = Letter + 32;
         }
     }
     return buffer;
 }
-void CompareStringW(unsigned char *StringRef, unsigned char *String2C)
+void CompareStringW(unsigned char *StringRef, unsigned char *Word2Compare)
 {
     int len = 0;
     int StLen = Texlen(StringRef, '\0');
     while (len < (StLen - 1))
     {
 
-        if (*(StringRef + len) == *(String2C + len))
+        if (*(StringRef + len) == *(Word2Compare + len))
         {
             len++;
         }
@@ -196,56 +190,17 @@ void CompareStringW(unsigned char *StringRef, unsigned char *String2C)
         }
     }
 }
-void ClearT(unsigned char *StringC)
+void ClearT(unsigned char *Text)
 {
-    free(StringC);
+    free(Text);
 }
-
-boolean FindChar(unsigned char C2Find, unsigned char *A2Find, unsigned char StopC)
-{
-    boolean buffer = 0u;
-    int len = 0;
-    while (*(A2Find + len) != StopC)
-    {
-        if (*(A2Find + len) == C2Find)
-        {
-            buffer = 1u;
-            break;
-        }
-        else
-        {
-            len++;
-        }
-    }
-
-    return buffer;
-}
-boolean FindString(unsigned char *Text2Find, unsigned char *A2Find, unsigned char StopC)
-{
-    boolean buffer = 0u;
-    int len = 0;
-    while (*(Text2Find + len) != StopC)
-    {
-        if (*(Text2Find + len) == *(A2Find + 0))
-        {
-            buffer = 1u;
-            break;
-        }
-        else
-        {
-            len++;
-        }
-    }
-
-    return buffer;
-}
-boolean FindSymbol(unsigned char S2Find, unsigned char *A2Find, unsigned char StopC)
+boolean FindLetter(unsigned char Letter2Find, unsigned char *A2Find, unsigned char StopC)
 {
     boolean buffer = 0u;
     int len = 0;
     while (*(A2Find + len) != StopC)
     {
-        if (*(A2Find + len) == S2Find)
+        if (*(A2Find + len) == Letter2Find)
         {
             buffer = 1u;
             break;
@@ -258,7 +213,44 @@ boolean FindSymbol(unsigned char S2Find, unsigned char *A2Find, unsigned char St
 
     return buffer;
 }
+boolean   FindWord(unsigned char *Word2Find, unsigned char *A2Find, unsigned char StopC)
+{
+    boolean buffer = 0u;
+    int len = 0;
+    while (*(Word2Find + len) != StopC)
+    {
+        if (*(Word2Find + len) == *(A2Find + 0))
+        {
+            buffer = 1u;
+            break;
+        }
+        else
+        {
+            len++;
+        }
+    }
 
+    return buffer;
+}
+boolean FindSymbol(unsigned char Symbol2Find, unsigned char *A2Find, unsigned char StopC)
+{
+    boolean buffer = 0u;
+    int len = 0;
+    while (*(A2Find + len) != StopC)
+    {
+        if (*(A2Find + len) == Symbol2Find)
+        {
+            buffer = 1u;
+            break;
+        }
+        else
+        {
+            len++;
+        }
+    }
+
+    return buffer;
+}
 boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char StopC)
 {
     int len = 0;
@@ -271,42 +263,61 @@ boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char Sto
 
     return 1u;
 }
-
-unsigned char *getAfterW(unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
+unsigned char *getAfterW(unsigned int WordCoincidences, unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
 {
     unsigned char *Word = '\0';
-
-    int len = 0;
-    while (*(StartAddC + len + Line) != StopC)
+    int Loop = 0;
+    int ToFindLength = Texlen(ToFind, '\0');
+    int CharReached = 0;
+    int Coincidences = 0;
+    int Recording_Word = 0;
+    while (*(StartAddC + Loop + Line) != StopC)
     {
-        if (FindChar(StartAddC[Line + 0], StartAddC + len + Line, StopC))
+
+        if (ToFind[0] == StartAddC[Loop + Line] && Coincidences < WordCoincidences)
         {
-            for (int CIText = 0; CIText < Texlen(ToFind, '\0'); CIText++)
+            for (int CIText = 0; CIText < ToFindLength; CIText++)
             {
-                printf("%d | ", CIText);
-                printf("%c \n", StartAddC[Line + CIText]);
+                //printf("%c | Was Found\n", StartAddC[Line + CIText]);
+                if (StartAddC[Loop + Line + CIText] == ToFind[CIText])
+                {
+                    CharReached++;
+                }
+                else
+                {
+                    
+                    break;
+                }
+            }
+            if (CharReached == ToFindLength)
+            {
+                Coincidences++;
+                while (*(StartAddC + Loop + Line + ToFindLength + Recording_Word) != StopC)
+                {
+                    printf("%c", StartAddC[Line + Loop + ToFindLength + Recording_Word]);
+                    Recording_Word++;
+                }
+                printf("\n");
             }
         }
 
-        len++;
+        Loop++;
     }
 
     return Word;
 }
-
-unsigned char *getBeforeW(unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
+unsigned char *getBeforeW(unsigned int WordCoincidences,unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
 {
     unsigned char *Word;
-    int len = 0;
-    while (*(StartAddC + len + Line) != StopC)
+    int Loop = 0;
+    while (*(StartAddC + Loop + Line) != StopC)
     {
 
-        len++;
+        Loop++;
     }
 
     return Word;
 }
-
 void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned char *newS)
 {
 }
@@ -316,7 +327,6 @@ void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned ch
 // void DeleteSpace(char *StringC, char StopC){
 //     while (*(StringC) != StopC)
 //     {
-
 //     }
 // }
 // unsigned char* getAfterSymbol(char *StartAddC, char S, char StopC){
@@ -358,7 +368,6 @@ void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned ch
 // int W2I(unsigned char* Ref){
 //     return 0;
 // }
-
 // unsigned char* I2W(int Var){
 //     unsigned char Var = ' ';
 //     return &Var;

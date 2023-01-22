@@ -6,32 +6,40 @@
 
 typedef unsigned char boolean;
 
+//TODO:Implement for Release v1.3
+// typedef struct Text{
+//     unsigned char* Text_Name;
+//     unsigned int*  Text_Rows;
+//    unsigned char* Text_Content;
+// };
+
 #define True (boolean)1u
 #define False (boolean)0u
 
 int Texlen(unsigned char *StringC, char StopC);
-void LinesAddress(unsigned char *MainS);
-unsigned char *AppendW(unsigned char *StringC1, unsigned char *StringC2);
-unsigned char *AppendL(unsigned char *StringC, char C);
-int numLines(unsigned char *MainS);
-unsigned char *toUpperCaseW(unsigned char *StringC);
-char toUpperCaseL(char C);
-unsigned char *toLowerCaseW(unsigned char *StringC);
-char toLowerCaseL(char C);
-void CompareStringW(unsigned char *StringRef, unsigned char *String2C);
-void ClearT(unsigned char *StringC);
-boolean Findchar(unsigned char C2Find, unsigned char *A2Find, unsigned char StopC);
-boolean FindString(unsigned char *Text2Find, unsigned char *A2Find, unsigned char StopC);
-boolean FindSymbol(unsigned char S2Find, unsigned char *A2Find, unsigned char StopC);
-boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char StopC);
+void      LinesAddress(unsigned char *Principal_Text);
+unsigned char *AppendW(unsigned char *Principal_Text, unsigned char *Word);
+unsigned char *AppendL(unsigned char *Principal_Text, unsigned char Letter);
+unsigned int  numLines(unsigned char *Principal_Text);
+unsigned char  *toUpperCaseWord(unsigned char  *Word);
+unsigned char toUpperCaseLetter(unsigned char Letter);
+unsigned char  *toLowerCaseWord(unsigned char  *Word);
+unsigned char toLowerCaseLetter(unsigned char Letter);
+void CompareStringW(unsigned char *StringRef, unsigned char *Word2Compare);
+void ClearT(unsigned char *Text);
+boolean FindLetter(unsigned char Letter2Find, unsigned char *A2Find, unsigned char StopC);
+boolean   FindWord(unsigned char  *Word2Find, unsigned char *A2Find, unsigned char StopC);
+boolean FindSymbol(unsigned char Symbol2Find, unsigned char *A2Find, unsigned char StopC);
 void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned char *newS);
+unsigned char *getAfterW      (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+unsigned char *getBeforeW     (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+unsigned char *getAfterSymbol (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char   Symbol, unsigned char StopC);
+unsigned char *getBeforeSymbol(unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char   Symbol, unsigned char StopC);
+unsigned char *getAfterchar   (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char   Letter, unsigned char StopC);
+unsigned char *getBeforechar  (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char   Letter, unsigned char StopC);
+//TODO: Implement for Release v1.3
+boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char StopC);
 // void DeleteSpace(char *StringC, char StopC);
-// unsigned char *getAfterSymbol(char *StartAddC, char S, char StopC);
-// unsigned char *getBeforeSymbol(char *StartAddC, char S, char StopC);
-// unsigned char *getAfterchar(char *StartAddC, char L, char StopC);
-// unsigned char *getBeforechar(char *StartAddC, char L, char StopC);
-unsigned char *getAfterW(unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
-unsigned char *getBeforeW(unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
 // unsigned char *getBeforeLine(int line);
 // unsigned char *getAfterLine(int line);
 // unsigned char *getLine(int line);

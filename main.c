@@ -4,15 +4,16 @@
 
 int main(int argc, char **argv)
 {
-    char *Main = "Hello";
-    char *txt1 = "erfsdgsd sgsdfgd ergerg ergerge";
-    char *txt = "Hello Jesus\nWorld\nfrom\nI am your father\nWelcome to\nFuck the\nSociety";
-    char *h1 = "Hello";
-    char *h2 = " World!";
-    char *St = "12345";
-    char l = '6';
-    char Up = 'H';
-    char Low = 'h';
+    unsigned char *Main = "Hello";
+    unsigned char *txt1 = "erfsdgsd sgsdfgd ergerg ergerge";
+    unsigned char *Example = "__Hello_Jesus, Hello_World\nWorld";
+    unsigned char *txt = "__Hello_Jesus\nWorld\nfrom\nI am your father\nWelcome to\nFuck the\nSociety";
+    unsigned char *h1 = "Hello";
+    unsigned char *h2 = " World!";
+    unsigned char *St = "12345";
+    unsigned char l = '6';
+    unsigned char Up = 'H';
+    unsigned char Low = 'h';
 
     printf("%s :before append\n", St);
     printf("%s :after append\n", AppendL(St, l));
@@ -22,17 +23,16 @@ int main(int argc, char **argv)
     printf("%d :Num of Lines\n", numLines(txt));
     printf("%d :Num of Lines\n", numLines(h1));
     printf("%s :normal\n", h1);
-    printf("%s :Upper\n", toUpperCaseW(h1));
-    printf("%s :low\n", toLowerCaseW(h1));
+    printf("%s :Upper\n", toUpperCaseWord(h1));
+    printf("%s :low\n", toLowerCaseWord(h1));
     printf("----------------------------\n");
     CompareStringW(Main, h1);
     printf("----------------------------\n");
     LinesAddress(txt);
-    printf("the word %s is %d in %s", txt1, FindString(txt1, Main,'\0'), Main);
+    printf("the word %s is %d in %s", txt1, FindWord(txt1, Main, '\0'), Main);
     printf("----------------------------\n");
-    getAfterW(0,txt,Main,'\n');
-    printf("The pattern was %s", (RegexFind("/[A-Z]{12}/", Main,'\0') == 1u ? "found" : "not found") );
-
+    getAfterW(1, 0, Example, "o_Je", '\n');
+    // printf("The pattern was %s", (RegexFind("/[A-Z]{12}/", Main,'\0') == 1u ? "found" : "not found") );
 
     // int i;
     // int total = 100;
@@ -51,8 +51,6 @@ int main(int argc, char **argv)
     //     printf("\033");
     // }
     // printf("\n");
-
-
 
     return 0;
 }
