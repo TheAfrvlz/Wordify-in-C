@@ -321,14 +321,22 @@ unsigned char *getBeforeW(unsigned int WordCoincidences,unsigned int Line, unsig
 void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned char *newS)
 {
 }
-
+void deleteFromInterval(unsigned int line, unsigned char *StartAddC, unsigned char **ArrayOfWordConcidences, unsigned char StopC){
+    
+}
 // TODO
-
+// void InsertBeforeWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertAfterWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertBeforeLetter (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertAfterLetter (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertBeforeSymbol (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertAfterSymbol (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
 // void DeleteSpace(char *StringC, char StopC){
 //     while (*(StringC) != StopC)
 //     {
 //     }
 // }
+
 // unsigned char* getAfterSymbol(char *StartAddC, char S, char StopC){
 //      unsigned char Var = ' ';
 //     return &Var;
@@ -357,7 +365,7 @@ void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned ch
 //      unsigned char Var = ' ';
 //     return &Var;
 // }
-// unsigned char* getBetweenSymbols(char *StartAddC,char *symbol){
+// unsigned char* getWordBetweenSymbols(char *StartAddC,char *symbol){
 //  unsigned char Var = ' ';
 //     return &Var;
 // }

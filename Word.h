@@ -39,6 +39,7 @@ unsigned char *getAfterchar   (unsigned int WordCoincidences, unsigned int line,
 unsigned char *getBeforechar  (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char   Letter, unsigned char StopC);
 //TODO: Implement for Release v1.3
 boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char StopC);
+void deleteFromInterval(unsigned int line, unsigned char *StartAddC, unsigned char **ArrayOfWordConcidences, unsigned char StopC);
 // void DeleteSpace(char *StringC, char StopC);
 // unsigned char *getBeforeLine(int line);
 // unsigned char *getAfterLine(int line);
@@ -46,6 +47,12 @@ boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char Sto
 // unsigned char *getBetweenSymbol(char *StartAddC,char *symbol);
 // void ShiftLeftString(char *lineAdd, int len, char *String2Shift);
 // void ShiftRightString(char *lineAdd, int len, char *String2Shift);
+// void InsertBeforeWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertAfterWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertBeforeLetter (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertAfterLetter (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertBeforeSymbol (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
+// void InsertAfterSymbol (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
 // int W2I(unsigned char*Ref);
 // unsigned char* I2W(int Var);
 #endif
