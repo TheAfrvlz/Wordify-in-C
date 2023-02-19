@@ -321,9 +321,6 @@ unsigned char *getBeforeW(unsigned int WordCoincidences,unsigned int Line, unsig
 void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned char *newS)
 {
 }
-void deleteFromInterval(unsigned int line, unsigned char *StartAddC, unsigned char **ArrayOfWordConcidences, unsigned char StopC){
-    
-}
 // TODO
 // void InsertBeforeWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
 // void InsertAfterWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);

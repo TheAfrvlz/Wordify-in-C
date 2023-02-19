@@ -39,7 +39,8 @@ unsigned char *getAfterchar   (unsigned int WordCoincidences, unsigned int line,
 unsigned char *getBeforechar  (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char   Letter, unsigned char StopC);
 //TODO: Implement for Release v1.3
 boolean RegexFind(unsigned char *Regex, unsigned char *A2Find, unsigned char StopC);
-void deleteFromInterval(unsigned int line, unsigned char *StartAddC, unsigned char **ArrayOfWordConcidences, unsigned char StopC);
+void InsertOperationOnInterval(unsigned char *StartAddC, unsigned char **ArrayOfWordConcidences, unsigned char StopC, unsigned char StopCoincidence);
+void  EraseOperationOnInterval(unsigned char *StartAddC, unsigned char **ArrayOfWordConcidences, unsigned char StopC, unsigned char StopCoincidence);
 // void DeleteSpace(char *StringC, char StopC);
 // unsigned char *getBeforeLine(int line);
 // unsigned char *getAfterLine(int line);
