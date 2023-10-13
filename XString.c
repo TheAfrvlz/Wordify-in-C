@@ -1,4 +1,4 @@
-#include "Word.h"
+#include "XString.h"
 
 typedef unsigned char boolean;
 #define True (boolean)1u
@@ -6,8 +6,7 @@ typedef unsigned char boolean;
 
 int *LinePos;
 
-
-int Texlen(unsigned char *Principal_Text, char StopC)
+int TxtLen(unsigned char *Principal_Text, char StopC)
 {
     int len = 0;
     while (*(Principal_Text + len) != StopC)
@@ -41,7 +40,7 @@ void LinesAddress(unsigned char *Principal_Text)
         printf("%c content - %d Address, location in : %d\n", *(Principal_Text + LinePos[i]), (Principal_Text + LinePos[i]), LinePos[i]);
     }
 }
-unsigned int  numLines(unsigned char *Principal_Text)
+unsigned int static numLines(unsigned char *Principal_Text)
 {
     int lin = 1;
     int len = 0;
@@ -56,7 +55,7 @@ unsigned int  numLines(unsigned char *Principal_Text)
 
     return lin;
 }
-unsigned char *AppendL(unsigned char *Principal_Text, unsigned char Letter)
+unsigned char *AppendLetter(unsigned char *Principal_Text, unsigned char Letter)
 {
 
     int StrLng = Texlen(Principal_Text, '\0');
@@ -74,7 +73,7 @@ unsigned char *AppendL(unsigned char *Principal_Text, unsigned char Letter)
 
     return buffer;
 }
-unsigned char *AppendW(unsigned char *Principal_Text, unsigned char *Word)
+unsigned char *AppendWord(unsigned char *Principal_Text, unsigned char *Word)
 {
 
     int StrLng = Texlen(Principal_Text, '\0');
@@ -145,7 +144,7 @@ unsigned char *toLowerCaseWord(unsigned char *Word)
     }
     return buffer;
 }
-unsigned char     toUpperCaseL(unsigned char Letter)
+unsigned char toUpperCaseL(unsigned char Letter)
 {
     // 97 // 122
     char buffer;
@@ -159,7 +158,7 @@ unsigned char     toUpperCaseL(unsigned char Letter)
     }
     return buffer;
 }
-unsigned char     toLowerCaseL(unsigned char Letter)
+unsigned char toLowerCaseL(unsigned char Letter)
 {
     // 97 // 122
     char buffer;
@@ -172,13 +171,12 @@ unsigned char     toLowerCaseL(unsigned char Letter)
     }
     return buffer;
 }
-void CompareStringW(unsigned char *StringRef, unsigned char *Word2Compare)
+void CompareStrings(unsigned char *StringRef, unsigned char *Word2Compare)
 {
     int len = 0;
     int StLen = Texlen(StringRef, '\0');
     while (len < (StLen - 1))
     {
-
         if (*(StringRef + len) == *(Word2Compare + len))
         {
             len++;
@@ -190,10 +188,13 @@ void CompareStringW(unsigned char *StringRef, unsigned char *Word2Compare)
         }
     }
 }
-void ClearT(unsigned char *Text)
+
+
+void ClearTxt(unsigned char *Text)
 {
     free(Text);
 }
+
 boolean FindLetter(unsigned char Letter2Find, unsigned char *A2Find, unsigned char StopC)
 {
     boolean buffer = 0u;
@@ -213,7 +214,7 @@ boolean FindLetter(unsigned char Letter2Find, unsigned char *A2Find, unsigned ch
 
     return buffer;
 }
-boolean   FindWord(unsigned char *Word2Find, unsigned char *A2Find, unsigned char StopC)
+boolean FindWord(unsigned char *Word2Find, unsigned char *A2Find, unsigned char StopC)
 {
     boolean buffer = 0u;
     int len = 0;
@@ -278,14 +279,13 @@ unsigned char *getAfterW(unsigned int WordCoincidences, unsigned int Line, unsig
         {
             for (int CIText = 0; CIText < ToFindLength; CIText++)
             {
-                //printf("%c | Was Found\n", StartAddC[Line + CIText]);
+                // printf("%c | Was Found\n", StartAddC[Line + CIText]);
                 if (StartAddC[Loop + Line + CIText] == ToFind[CIText])
                 {
                     CharReached++;
                 }
                 else
                 {
-                    
                     break;
                 }
             }
@@ -306,7 +306,7 @@ unsigned char *getAfterW(unsigned int WordCoincidences, unsigned int Line, unsig
 
     return Word;
 }
-unsigned char *getBeforeW(unsigned int WordCoincidences,unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
+unsigned char *getBeforeW(unsigned int WordCoincidences, unsigned int Line, unsigned char *StartAddC, unsigned char *ToFind, unsigned char StopC)
 {
     unsigned char *Word;
     int Loop = 0;
@@ -318,10 +318,14 @@ unsigned char *getBeforeW(unsigned int WordCoincidences,unsigned int Line, unsig
 
     return Word;
 }
-void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned char *newS)
-{
+void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned char *newS){
+
+    
 }
 // TODO
+// void DeleteJumpLine(nsigned char *StartAddC, unsigned char StopC){}
+// void DeleteTab(unsigned char *StartAddC, unsigned char StopC){}
+// void InsertTab(unsigned char Tab_Size, unsigned char *StartAddC, unsigned char StopC){}
 // void InsertBeforeWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
 // void InsertAfterWord (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
 // void InsertBeforeLetter (unsigned int WordCoincidences, unsigned int line, unsigned char *StartAddC, unsigned char *StringC, unsigned char StopC);
@@ -377,3 +381,10 @@ void ReplaceW(unsigned char *OriginString, unsigned char *toReplace, unsigned ch
 //     unsigned char Var = ' ';
 //     return &Var;
 // }
+// void ReverseText(){}
+// void PopText(){}
+// void Map(ArrowF){}
+// void Filter(ArrowF){}
+// void At(Positio){}
+// void Slices(){}
+
